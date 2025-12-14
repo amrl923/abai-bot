@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Abay Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <!-- Sidebar: Only for chats and quizzes -->
+        <aside class="sidebar">
+            <div id="chats-content" class="tab-content active">
+                <div class="content-header">
+                    <h2>Чаты</h2>
+                    <div class="header-actions">
+                        <button id="newChatBtn">+ Новый</button>
+                    </div>
+                </div>
+                <ul id="conversationsList" class="conversations-list"></ul>
+            </div>
+            <div id="quizzes-content" class="tab-content">
+                <div class="content-header">
+                    <h2>Викторины</h2>
+                </div>
+                <ul class="conversations-list"></ul>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile close -->
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <!-- Main Chat -->
+        <main class="main-chat">
+            <header class="chat-header">
+                <button id="hamburgerBtn" class="hamburger-btn" aria-label="Меню">☰</button>
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="chats">Чаты</button>
+                    <button class="tab-btn" data-tab="works">Произведения</button>
+                    <button class="tab-btn" data-tab="quotes">Цитаты</button>
+                    <button class="tab-btn" data-tab="quizzes">Викторины</button>
+                </div>
+                <button id="settingsBtn" class="settings-btn" aria-label="Настройки">⚙️</button>
+            </header>
+
+            <div id="messages" class="messages">
+                <div id="typing-indicator" class="typing-indicator hidden">
+                    <div class="msg bot">
+                        <div class="avatar bot">🤖</div>
+                        <div class="content typing-content">
+                            <span>Абай печатает</span>
+                            <span class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input id="inputText" type="text" placeholder="Спроси у Абая..." autocomplete="off" />
+                <button id="sendBtn" aria-label="Отправить">→</button>
+            </div>
+        </main>
+
+        <!-- Settings Panel -->
+        <aside class="settings-panel">
+            <div class="settings-header">
+                <h2>Настройки</h2>
+                <button id="closeSettingsBtn" class="close-settings-btn" aria-label="Закрыть">×</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label class="setting-label">Язык интерфейса</label>
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="ru">Русский</button>
+                        <button class="lang-btn" data-lang="kk">Қазақша</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">Тема оформления</label>
+                    <div class="theme-switcher">
+                        <button class="theme-btn active" data-theme="light">☀️ Светлая</button>
+                        <button class="theme-btn" data-theme="dark">🌙 Темная</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Settings Overlay -->
+        <div id="settings-overlay" class="settings-overlay"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+    <!-- Language texts -->
+    <script>
+        window.I18N = {
+            ru: {
+                chats: "Чаты",
+                newChat: "Новый чат",
+                noChats: "Нет чатов. Создайте первый!",
+                settings: "Настройки",
+                close: "×",
+                language: "Язык",
+                theme: "Тема оформления",
+                light: "Светлая",
+                dark: "Темная",
+                abayTyping: "Абай печатает",
+                inputPlaceholder: "Спроси у Абая...",
+                send: "→",
+                headerTitle: "Абай Бот  ",
+                tabs: {
+                    chats: "Чаты",
+                    works: "Произведения",
+                    quotes: "Цитаты",
+                    quizzes: "Викторины"
+                }
+            },
+            kk: {
+                chats: "Чаттар",
+                newChat: "Жаңа чат",
+                noChats: "Чат жоқ. Біріншісін жасаңыз!",
+                settings: "Параметрлер",
+                close: "×",
+                language: "Тіл",
+                theme: "Тема",
+                light: "Жарық",
+                dark: "Қараңғы",
+                abayTyping: "Абай теріп жатыр",
+                inputPlaceholder: "Абайдан сұраңыз...",
+                send: "→",
+                headerTitle: "Абай Бот  ",
+                tabs: {
+                    chats: "Чаттар",
+                    works: "Шығармалар",
+                    quotes: "Дәйексөздер",
+                    quizzes: "Викториналар"
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>
